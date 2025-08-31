@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Language Phrase Generator</title>
+    <!-- Link to the external CSS file for styling -->
+    <link rel="stylesheet" href="language-learning-app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- TTS Warning Modal -->
+    <div id="tts-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Heads Up!</div>
+            <div class="modal-body">
+                In order for text-to-speech to work, you must have the language you are learning enabled on your computer.
+            </div>
+            <button id="modal-close-btn" class="modal-close-btn">Got It</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Title and description -->
+        <h1 class="app-title">Language Phrase Generator</h1>
+        <p class="app-description">Choose your languages and a topic to generate and translate ten phrases.</p>
+
+        <!-- Dropdown selectors and new topic input -->
+        <div class="select-container">
+            <select id="native-lang">
+                <option value="" disabled selected>Select Native Language</option>
+            </select>
+            <select id="learning-lang">
+                <option value="" disabled selected>Select Learning Language</option>
+            </select>
+            <!-- Topic selection dropdown -->
+            <select id="topic-select">
+                <option value="" disabled selected>Select a Topic</option>
+                <option value="custom">Custom Topic</option>
+                <option value="business">Business</option>
+                <option value="clothes">Clothes</option>
+                <option value="common_conversation">Common Conversation</option>
+                <option value="computers">Computers</option>
+                <option value="food_and_drink">Food and Drink</option>
+                <option value="games">Games</option>
+                <option value="grammar_conjunctions">Grammar: Conjunctions</option>
+                <option value="grammar_farewells">Grammar: Farewells</option>
+                <option value="grammar_introductions">Grammar: Introductions</option>
+                <option value="grammar_pronouns">Grammar: Pronouns</option>
+                <option value="grammar_quantitative">Grammar: Quantitative (some, all, none)</option>
+                <option value="grammar_wh">Grammar: Who, What, When, Where, Why</option>
+                <option value="school">School</option>
+                <option value="science">Science</option>
+                <option value="shopping">Shopping</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+            </select>
+            <input type="text" id="custom-topic-input" placeholder="Enter custom topic" maxlength="50" style="display:none;">
+        </div>
+
+        <!-- Generate button -->
+        <button id="generate-btn">
+            Generate New Phrases
+        </button>
+
+        <!-- Loading and error messages -->
+        <div id="status-message">
+            <div class="flex-center">
+                <div class="loading-spinner" style="margin-right: 0.5rem;"></div>
+                Generating and translating...
+            </div>
+        </div>
+        <div id="error-message"></div>
+        <div id="tts-message"></div>
+
+        <!-- Output display with navigation -->
+        <div id="output-container">
+            <!-- This is where the single phrase block will be displayed -->
+            <div id="phrase-display-block" class="phrase-block">
+                <div class="mb-4">
+                    <h3 id="native-lang-heading"></h3>
+                    <p id="native-phrase"></p>
+                    <!-- Transliteration for the native phrase -->
+                    <p id="native-phonetics-phrase" class="phonetics-text"></p>
+                </div>
+                <div>
+                    <h3 id="learning-lang-heading"></h3>
+                    <p id="learning-phrase">
+                        <!-- Sound icon for the phrase -->
+                        <svg id="sound-icon-svg" class="sound-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 5L6 9H2V15H6L11 19V5Z" />
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                        </svg>
+                        <span id="learning-phrase-text"></span>
+                    </p>
+                    <!-- Transliteration for the learning phrase -->
+                    <p id="learning-phonetics-phrase" class="phonetics-text"></p>
+                    <!-- Word-by-word translation tabs -->
+                    <div id="word-by-word-container" class="word-tabs-container"></div>
+                </div>
+            </div>
+
+            <!-- Navigation controls -->
+            <div class="navigation-controls">
+                <button id="prev-btn" class="nav-btn">&lt;</button>
+                <span id="phrase-counter"></span>
+                <button id="next-btn" class="nav-btn">&gt;</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Timer bubble -->
+    <div id="timer-bubble" class="timer-bubble"></div>
+
+    <!-- Link to the external JavaScript file for interactivity -->
+    <script src="language-learning-app.js"></script>
+</body>
+
+</html>
